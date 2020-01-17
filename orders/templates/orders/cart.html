@@ -1,0 +1,45 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Pizza Delivery - Cart
+{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  	<div class="collapse navbar-collapse" id="navbarSupportedContent" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}" >Home</a>
+      </li>
+     
+     <li class="nav-item active">
+        <a class="nav-link" href="{% url 'show_cart' %}">Cart</a>
+      </li>
+      <li class="nav-item">
+        
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+    <h1>Pizzas !!!</h1>
+
+	</div>
+</nav>
+<hr>
+
+<div class="jumbotron">
+        <h5>{{ user }}</h5>
+        <table class="table table-sm table-hover">
+            {% for c in cart %}
+            <tr>
+                <td>{{ c.item }}</td>
+                <td>Extras : {{c.extras}}</td>
+                <td>Price : {{c.price}}</td>
+                <td><a href="{% url 'place_order' c.item c.price c.extras c.pk %}">Place order</a></td>
+                <td><a href="{% url 'delete_order' c.pk %}">Delete order</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock %}
