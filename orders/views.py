@@ -41,7 +41,8 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, "orders/login.html", {"message": "Logout successfully "})
+    return HttpResponseRedirect(reverse("index"))
+    # return render(request, "orders/login.html", {"message": "Logout successfully "})
 
 
 def register(request):
